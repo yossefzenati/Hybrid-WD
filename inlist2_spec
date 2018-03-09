@@ -1,0 +1,31 @@
+! inlist2 for the secondary in a binary model
+
+&star_job
+
+      !mesa_dir = ''
+      !show_log_description_at_start = .false.
+
+
+/ ! end of star_job namelist
+
+&controls
+
+ 
+  ! Output rate
+    !profile_interval = 100
+    !history_interval = 10
+    !terminal_cnt = 5
+    !write_header_frequency = 10
+    !max_num_profile_models = -1
+    !report_ierr = .true.
+  ! Output files
+    !extra_terminal_output_file = 'log2'
+    !photo_directory = 'photos2'
+    !log_directory = 'LOGS2'
+ / ! end of controls namelist
+
+
+&pgstar
+         
+
+/ ! end of pgstar namelist3ModelFinal

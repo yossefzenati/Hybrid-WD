@@ -1,0 +1,167 @@
+! inlist_massive_defaults
+
+
+&star_job
+      !show_log_description_at_start = .false.
+
+      !kappa_file_prefix = 'gs98'
+
+      !change_v_flag = .true.
+      !new_v_flag = .true.
+      
+      !new_rotation_flag = .true.
+      !change_rotation_flag = .true.  ! rotation off until near zams
+      !new_omega_div_omega_crit =0.5
+      !near_zams_relax_omega_div_omega_crit = .true.
+      !num_steps_to_relax_rotation = 50 ! use this many steps to change value
+
+      !set_initial_age = .true.
+      !initial_age = 0 ! in years
+
+      !set_initial_model_number = .true.
+      !initial_model_number = 0
+
+      !pgstar_flag = .true.
+
+/ ! end of star_job namelist
+
+
+&controls
+         
+         !min_T_for_time_averaged_conv_velocity = 3e9
+         
+        !Pextra_factor = 1 ! keep the old form for now
+        !cool_wind_RGB_scheme = 'Reimers'
+        !cool_wind_AGB_scheme = 'Blocker'
+        !Reimers_scaling_factor = 0.78
+        !Blocker_scaling_factor = 0.1
+  
+         !include_dmu_dt_in_eps_grav = .true.
+         !use_Type2_opacities = .true.
+         !Zbase = -1 ! must set this in the main inlist
+         !xa_scale = 1d-5
+         !newton_itermin = 100
+
+         !mixing_length_alpha = 1.44
+         !MLT_option = 'Henyey'
+
+         !use_Ledoux_criterion = .true.
+         !alpha_semiconvection = 1d-2
+         !thermohaline_coeff = 2.0
+         !thermohaline_option = 'Kippenhahn'
+
+! overshoot
+      ! nonburning regions
+      !overshoot_f_above_nonburn_core = 0.018
+      !overshoot_f0_above_nonburn_core = 0.005
+      !overshoot_f_above_nonburn_shell = 0.018
+      !overshoot_f0_above_nonburn_shell = 0.005
+      !overshoot_f_below_nonburn_shell = 0.018
+      !overshoot_f0_below_nonburn_shell = 0.005
+
+     ! h burning regions
+      !overshoot_f_above_burn_h_core = 0.018
+      !overshoot_f0_above_burn_h_core = 0.005
+      !overshoot_f_above_burn_h_shell = 0.0018
+      !overshoot_f0_above_burn_h_shell = 0.005
+      !overshoot_f_below_burn_h_shell = 0.018
+      !overshoot_f0_below_burn_h_shell = 0.005
+
+     ! he burning regions
+      !overshoot_f_above_burn_he_core = 0.018
+      !overshoot_f0_above_burn_he_core = 0.005
+      !overshoot_f_above_burn_he_shell = 0.018
+      !overshoot_f0_above_burn_he_shell = 0.005
+      !overshoot_f_below_burn_he_shell = 0.018
+      !overshoot_f0_below_burn_he_shell = 0.005
+
+     ! metal burning regions
+      !overshoot_f_above_burn_z_core = 0.018
+      !overshoot_f0_above_burn_z_core = 0.005
+      !overshoot_f_above_burn_z_shell = 0.018
+      !overshoot_f0_above_burn_z_shell = 0.005
+      !overshoot_f_below_burn_z_shell = 0.018
+      !overshoot_f0_below_burn_z_shell = 0.005
+
+/ ! end of controls namelist
+
+
+&pgstar
+
+         
+pause = .false.
+   
+  !History_Track1_title = 'mdot vs t'
+  !History_Track1_xname = 'age'
+  !History_Track1_yname = 'lg_mstar_dot_1'
+  !History_Track1_xaxis_label = 't (years)'
+  !History_Track1_yaxis_label = 'log mdot'
+  !History_Track1_reverse_xaxis = .false.
+
+  !History_Track1_log_xaxis = .false.
+  !History_Track1_log_yaxis = .false.
+
+  !History_Track1_ymin = -12
+  !History_Track1_ymax = -6
+
+  !History_Panels1_win_flag = .true.
+  !History_Panels1_win_width = 5
+  !History_Panels1_win_aspect_ratio = 1
+
+  !History_Panels1_title = 'Orbital evolution'
+
+  !History_Panels1_max_width = 100
+
+  !History_Panels1_yaxis_name(1) = 'period_days'
+  !History_Panels1_yaxis_name(2) = 'Jdot'
+  !History_Panels1_yaxis_name(3) = 'star_mass'
+
+  !History_Panels1_other_yaxis_name(1) = 'lg_mstar_dot_1'
+  !History_Panels1_other_yaxis_name(2) = 'binary_separation'
+  !History_Panels1_other_yaxis_name(3) = 'log_abs_mdot'
+
+  !History_Panels1_num_panels = 2
+
+  !Grid2_win_flag = .true.
+  !Grid2_win_width = 12
+  ! option to save snapshots of the above grid to turn into a movie later
+  ! turned off for now
+  !Grid2_file_flag = .true.
+  !Grid2_file_width = 16
+  !Grid2_file_dir = 'png'
+  !Grid2_file_prefix = 'Grid2'
+  !Grid2_file_cnt = 5 ! output when mod(model_number,Grid2_file_cnt)==0
+  !Grid2_file_width = -1 ! negative means use same value as for window
+  !Grid2_file_aspect_ratio = -1 ! negative means use same value as for window
+  !Grid2_plot_name(3) = 'History_Track1'
+  !Grid2_plot_name(5) = 'Profile_Panels3'
+
+  ! options effecting plots inside the above grid
+  ! add legend explaining colors
+  ! show_TRho_Profile_legend = .true.
+  ! display numerical info about the star
+  ! TRho_Profile_xmin = 2.2
+  ! TRho_Profile_xmax = 7.8
+  ! TRho_Profile_ymin = 7.3
+  ! TRho_Profile_ymax = 9.3
+
+  !show_TRho_Profile_kap_regions = .false.
+  !show_TRho_Profile_degeneracy_line = .true.
+  !show_TRho_Profile_Pgas_Prad_line = .true.
+  !show_TRho_Profile_eos_regions = .false.
+  !show_TRho_Profile_burn_lines = .true.
+  !show_TRho_Profile_burn_labels = .true.
+  !show_TRho_Profile_logQ_limit = .false.
+
+  ! Profile_Panels3_win_flag = .true.
+  !Profile_Panels3_win_width = 7
+
+  ! Profile_Panels3_yaxis_name(2) = 'entropy'
+
+  !Profile_Panels3_xaxis_name = 'logxm'
+  !Profile_Panels3_xmax = 0
+  !Profile_Panels3_xmin = -10
+  ! Profile_Panels3_xaxis_reversed = .false.
+
+
+/ ! end of pgstar namelist
