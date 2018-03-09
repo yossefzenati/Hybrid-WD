@@ -1,35 +1,123 @@
-! inlist for star 1
-
 &star_job
 
-      read_extra_star_job_inlist1 = .true.
-      extra_star_job_inlist1_name = 'inlist_massive_defaults'
+  show_log_description_at_start = .false.
 
-      read_extra_star_job_inlist2 = .true.
-      extra_star_job_inlist2_name = 'inlist1_spec'
+  pgstar_flag = .true.
+
+  load_saved_model = .true.
+  saved_model_name = 'sdb.mod'
+
+  set_initial_dt = .true.
+  years_for_initial_dt = 1
+
+  set_initial_age = .true.
+  initial_age = 0
+  
+  set_tau_factor = .true.
+  set_to_this_tau_factor = 100
 
 / ! end of star_job namelist
 
-
-
 &controls
 
-      read_extra_controls_inlist1 = .true.
-      extra_controls_inlist1_name = 'inlist_massive_defaults'
+ ! Output files
+    extra_terminal_output_file = 'log1'
+    photo_directory = 'photos1'
+    !log_directory = 'LOGS1'
 
-      read_extra_controls_inlist2 = .true.
-      extra_controls_inlist2_name = 'inlist1_spec'
+  write_header_frequency = 10
+
+  history_interval = 1
+
+  profile_interval = 500
+
+  star_mass_min_limit = 0.44 ! Just make sure it's started taking some Helium away.
+  max_age = 3e8 ! He burning (both core and shell) totally done by this point)
+  max_model_number = 5000
+  power_he_burn_lower_limit = 0.1 ! Stop when it He burning luminosity goes away, so we don't get any of that contact as a WD nonsense.
+
+  varcontrol_target = 0.001 ! 0.0005 ! 0.0004
+
+  terminal_cnt = 10
 
 / ! end of controls namelist
 
-
-
 &pgstar
+  ! History_Track1_win_flag = .true.
+  ! History_Track1_file_flag = .true.
 
-      read_extra_pgstar_inlist1 = .true.
-      extra_pgstar_inlist1_name = 'inlist_massive_defaults'
+  History_Track1_title = 'mdot vs t'
+  History_Track1_xname = 'age'
+  History_Track1_yname = 'lg_mstar_dot_1'
+  History_Track1_xaxis_label = 't (years)'
+  History_Track1_yaxis_label = 'log mdot'
+  History_Track1_reverse_xaxis = .false.
 
-      read_extra_pgstar_inlist2 = .false.
-      extra_pgstar_inlist2_name = 'inlist1_spec'
+  History_Track1_log_xaxis = .false.
+  History_Track1_log_yaxis = .false.
+
+  History_Track1_ymin = -12
+  History_Track1_ymax = -6
+
+  History_Panels1_win_flag = .true.
+  History_Panels1_win_width = 5
+  History_Panels1_win_aspect_ratio = 1
+
+  History_Panels1_title = 'Orbital evolution'
+
+  History_Panels1_max_width = 100
+
+  History_Panels1_yaxis_name(1) = 'period_days'
+  History_Panels1_yaxis_name(2) = 'Jdot'
+  History_Panels1_yaxis_name(3) = 'star_mass'
+
+  History_Panels1_other_yaxis_name(1) = 'lg_mstar_dot_1'
+  History_Panels1_other_yaxis_name(2) = 'binary_separation'
+  History_Panels1_other_yaxis_name(3) = 'log_abs_mdot'
+
+  History_Panels1_num_panels = 2
+
+  Grid2_win_flag = .true.
+  Grid2_win_width = 12
+  ! option to save snapshots of the above grid to turn into a movie later
+  ! turned off for now
+  Grid2_file_flag = .true.
+  Grid2_file_width = 16
+  Grid2_file_dir = 'png'
+  Grid2_file_prefix = 'Grid2'
+  Grid2_file_cnt = 5 ! output when mod(model_number,Grid2_file_cnt)==0
+  Grid2_file_width = -1 ! negative means use same value as for window
+  Grid2_file_aspect_ratio = -1 ! negative means use same value as for window
+  Grid2_plot_name(3) = 'History_Track1'
+  Grid2_plot_name(5) = 'Profile_Panels3'
+
+  ! options effecting plots inside the above grid
+  ! add legend explaining colors
+  show_TRho_Profile_legend = .true.
+  ! display numerical info about the star
+  ! TRho_Profile_xmin = 2.2
+  ! TRho_Profile_xmax = 7.8
+  ! TRho_Profile_ymin = 7.3
+  ! TRho_Profile_ymax = 9.3
+
+  show_TRho_Profile_kap_regions = .false.
+  show_TRho_Profile_degeneracy_line = .true.
+  show_TRho_Profile_Pgas_Prad_line = .true.
+  show_TRho_Profile_eos_regions = .false.
+  show_TRho_Profile_burn_lines = .true.
+  show_TRho_Profile_burn_labels = .true.
+  show_TRho_Profile_logQ_limit = .false.
+
+  ! Profile_Panels3_win_flag = .true.
+  Profile_Panels3_win_width = 7
+
+  ! Profile_Panels3_yaxis_name(2) = 'entropy'
+
+  Profile_Panels3_xaxis_name = 'logxm'
+  Profile_Panels3_xmax = 0
+  Profile_Panels3_xmin = -10
+  ! Profile_Panels3_xaxis_reversed = .false.
+
 
 / ! end of pgstar namelist
+

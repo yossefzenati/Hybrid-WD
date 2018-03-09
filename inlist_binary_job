@@ -1,0 +1,8 @@
+&binary_job
+
+  inlist_names(1) = 'inlist1'
+  inlist_names(2) = 'inlist2'
+
+  evolve_both_stars = .false.
+
+/ ! end of binary_job namelist

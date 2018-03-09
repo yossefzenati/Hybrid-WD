@@ -1,49 +1,20 @@
-&binary_job
-
-   !inlist_names(1) = 'inlist1' 
-   !inlist_names(2) = 'inlist2'
-
-    !evolve_both_stars = .false.
-
-/ ! end of binary_job namelist
 
 &binary_controls
-   !do_tidal_sync = .true.
-   !do_j_accretion = .true.
-   ! be 100% sure MB is always off
-   !do_jdot_mb = .false.
-   !do_jdot_missing_wind = .true.
+  m1 = 0.462
+  m2 = 0.8
+  initial_period_in_days = 0.05
 
-   ! initial conditions specified in extra inlist
-   !m1 = 4.0
-   !m2 = 3.01 ! companion mass in MSun units
-   !initial_period_in_days = 5.5
-   
-   ! timestep controls
-   !fr = 0.01
-   !fr_limit = 5d-3
-   !fm = 0.01
-   !fm_limit = 1d-2
-   !varcontrol_case_a = 5d-3
-   !varcontrol_case_b = 5d-3
-   !varcontrol_ms = 2d-4
-   !varcontrol_post_ms = 8d-4
-   !dt_softening_factor = 0.4
+  log_directory = 'LOGS_period_0.05'
 
-   !limit_retention_by_mdot_edd = .false.
-   !implicit_scheme_tolerance = 0.003
-   !max_tries_to_achieve = 50
+  fa = 0.1
+  fr = 0.005
+  fj = 0.01
 
-   !sync_mode_1 = "Uniform"
-   !sync_type_1 = "Hut_rad"
-   !Ftid_1 = 1
-   !sync_mode_2 = "Uniform"
-   !sync_type_2 = "Hut_rad"
-   !Ftid_2 = 1
-   !do_initial_orbit_sync_1 = .false. !.true.
-   !do_initial_orbit_sync_2 = false.  !.true.
+  limit_retention_by_mdot_edd = .false.
 
-   !min_mdot_for_implicit = 1d-9
-   !accretor_overflow_terminate = 0.2d0
-         
+  max_tries_to_achieve = 20
+  implicit_scheme_tolerance = 0.003
+
+  do_jdot_mb = .false.
+
 / ! end of binary_controls namelist
