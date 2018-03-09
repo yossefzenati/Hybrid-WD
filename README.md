@@ -1,7 +1,8 @@
 # Hybrid-WD
-How to get hybrid WD by using Mesa code 9binary model and single model)
-install mesa code (http://mesa.sourceforge.net/) 
-Move inlist file you need (choose Single model or Binary model).
-setup the 'run_binary_extras.f90' or 'run_binary_extras.f90'.
-define your input (initial mass, network reaction,final file name,...)
-For the Single model you have 4 ilisit file, you have to run it one by the others.
+How to get hybrid WD by using Mesa code?
+There are two ways to do that: 1.binary model , 2.single model
+You need to install mesa code (http://mesa.sourceforge.net/). 
+Downdload inlist file from here (github/Hybrid-WD) that you need 
+Setup the 'run_binary_extras.f90' or 'run_binary_extras.f90' in the right place (mesa dir/src) 
+Select any input you need from my inlsit file, you have to put your values for initial mass, network reaction,final file name,...
+Single model have 4 ilisit file, you have to run it hierarchy for any mass you run.
