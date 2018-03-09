@@ -1,0 +1,86 @@
+&star_job
+
+     !mesa_dir = '../../..'
+      !show_log_description_at_start = .false. 
+
+      !load_saved_model = .true.
+      !saved_model_name = 'Final_step3.mod'
+      
+      !save_model_when_terminate = .true.
+      !save_model_filename = 'Final_step4.mod'
+      
+      !write_profile_when_terminate = .true.
+      !filename_for_profile_when_terminate = 'final_profile_step4.data'
+
+      !set_initial_model_number = .true.
+      !initial_model_number = 0
+
+      !set_initial_age = .true.
+      !initial_age = 0
+      !eos_file_prefix = 'mesa'
+      !kappa_file_prefix = 'gs98'
+
+
+      !change_initial_net = .true.      
+      !new_net_name = 'o18_and_ne22.net'
+
+      
+      !pgstar_flag = .true.
+
+
+/ ! end of star_job namelist
+
+&controls
+       
+
+      !photostep = 50
+      !profile_interval = 100
+      !history_interval = 1
+      !terminal_cnt = 10
+      !write_header_frequency = 10
+      !max_number_backups = 200
+      !max_number_retries = 500
+
+      !mesh_delta_coeff = 0.6
+      !tol_max_correction = 1d-2
+      !tol_max_correction_alt = 1d0
+
+      !max_age = 10d9
+      !max_years_for_timestep = 1d9
+      !log_L_lower_limit = -5
+      !eta_center_limit = 2.5
+
+
+      !min_timestep_limit = 1d-13
+
+
+/ ! end of controls namelist
+
+&pgstar
+
+      !Grid4_win_flag = .true.
+      !Kipp_mass_min = 0.565 ! (Msun units) negative means use default
+      !Kipp_mass_max = 0.575 ! (Msun units) negative means use default
+
+      !HR_win_flag = .true.
+      !HR_win_width = 6
+      !HR_win_aspect_ratio = 0.75 ! aspect_ratio = height/width
+         !HR_xleft = 0.15
+         !HR_xright = 0.85
+         !HR_ybot = 0.15
+         !HR_ytop = 0.85
+         !HR_txt_scale = 1.0
+         !HR_title = 'HR'    
+ ! top level controls
+
+         !pause = .true. 
+            ! if true, the code waits for user to enter a RETURN on the command line
+        !Abundance_win_flag = .true.
+	!Abundance_xaxis_name = 'logxm'
+	!Abundance_xaxis_reversed = .true.
+	!Abundance_xmin = -12
+	!Abundance_xmax = 0
+
+         
+/ ! end of pgstar namelist
+

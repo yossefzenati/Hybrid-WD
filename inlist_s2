@@ -1,0 +1,86 @@
+&star_job
+
+      !mesa_dir = '../../..'
+    
+      !show_log_description_at_start = .false. 
+
+      !load_saved_model = .true.
+      !saved_model_name = 'Final_step1.mod'
+      
+      !save_model_when_terminate = .true.
+      !save_model_filename = 'Final_step2.mod'
+      
+      !write_profile_when_terminate = .true.
+      !filename_for_profile_when_terminate = 'final_profile_step2.data'
+
+      !kappa_file_prefix = 'gs98'
+
+      !change_initial_net = .true.      
+      !new_net_name = 'o18_and_ne22.net'
+
+      !set_initial_dt = .true.
+      !years_for_initial_dt = 1d-13
+
+      !set_initial_age = .true.
+      !initial_age = 0
+
+
+      !relax_mass = .true. ! gradually change total mass
+      !new_mass = 1.66
+      !relax_initial_mass_change = .true.
+      !relax_mass_change_max_yrs_dt = 50
+      !lg_max_abs_mdot = -4
+
+!use_hydrodynamic_surface_BCs
+      !change_v_flag = .true.
+      !new_v_flag = .true.
+
+      !initial_h1 = 0.0000001
+      !initial_h2 = 0.0000001
+      
+      pgstar_flag = .true.
+
+
+/ ! end of star_job namelist
+
+&controls
+
+      !photostep = 50
+      !profile_interval = 100
+      !history_interval = 1
+      !terminal_cnt = 10
+      !write_header_frequency = 10
+      !max_number_backups = 200
+      !max_number_retries = 500
+
+      !tol_max_correction = 1d-2
+      !tol_max_correction_alt = 1d0
+
+! opacities
+      !use_Type2_opacities = .true.
+      !Zbase = 0.02
+    
+! winds loss mass
+      !remove_H_wind_mdot = 1.5d
+      !remove_H_wind_H_mass_limit = 0.0001
+      !star_H_mass_min_limit = 0.00000001
+
+
+      !max_age = 1.33E+09   
+      !envelope_mass_limit = 0.00005 
+      !min_timestep_limit = 1d-13
+  
+      !varcontrol_target = 1d-4
+
+
+/ ! end of controls namelist
+
+&pgstar
+         
+      ! top level controls
+
+         !pause = .true. 
+            ! if true, the code waits for user to enter a RETURN on the command line
+      
+
+/ ! end of pgstar namelist
